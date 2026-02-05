@@ -1,0 +1,24 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: "0.0.0.0"
+nodeRegistration:
+  criSocket: unix:///run/containerd/containerd.sock
+  imagePullPolicy: IfNotPresent
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+networking:
+  podSubnet: "192.168.0.0/16"
+controllerManager:
+  extraArgs:
+    horizontal-pod-autoscaler-tolerance: "0.000000001"
+    horizontal-pod-autoscaler-sync-period: "15s"
+    horizontal-pod-autoscaler-downscale-stabilization: "60s"
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+cpuManagerPolicy: static
+reservedSystemCPUs: "1"
+serializeImagePulls: false
+maxPods: 600
