@@ -131,6 +131,8 @@ if [[ $1 == "gpu" ]]; then
 # https://github.com/NVIDIA/k8s-device-plugin 
 # offical docs https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/getting-started.html
 # ctr https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
     sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
